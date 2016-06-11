@@ -1,24 +1,27 @@
+import LoginPage from '../pageobjects/login.page';
+import FrontPage from '../pageobjects/front.page';
+
 describe('auth', function() {
-  it('go to login page', function(done) {
-    browser.url('/');
-    browser.click('.open-panel');
-    browser.click('.panel-close');
-    browser.waitForExist('[name=identifier]');
-    browser.getText('.login-screen-title').should.be.equal('Login');
+  describe('login success process', function() {
+    it('go to login page', function(done) {
+      browser.url('/');
+      browser.click('.open-panel');
+      browser.click('.panel-close');
+      LoginPage.identifier.waitForExist();
+      LoginPage.title.getText().should.be.equal('Login');
+    });
 
-  });
+    it('input login data and submit from', function(done) {
+      LoginPage.identifier.setValue('demo');
+      LoginPage.password.setValue('11111111');
+      browser.click('[type=submit]');
+      browser.pause(2000);
+      FrontPage.publicList.isExisting().should.be.equal(true);
+    });
 
-  it('input login data and submit from', function(done) {
-    browser.elements('[name=identifier]').setValue('demo');
-    browser.elements('[name=password]').setValue('11111111');
-    browser.click('[type=submit]');
-    browser.isExisting('[name=identifier]', false).should.be.equal(true);;
-  });
-
-  it('check login successful', function(done) {
-    browser.pause(2000);
-    browser.click('.open-panel');
-    browser.waitForExist('[href*=logout]');
-    browser.isExisting('[href*=logout]').should.be.equal(true);
+    it('check login successful', function(done) {
+      browser.click('.open-panel');
+      FrontPage.logoutLink.isExisting().should.be.equal(true);
+    });
   });
 });
