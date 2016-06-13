@@ -1,5 +1,8 @@
 # webdriverio hub sandbox
 
+## TODO
+[ ] try to add babel
+
 ## Target
 - test project init
 - create config file
@@ -25,3 +28,9 @@ mkdir errorShots/
 ## config
 
 `export BASEURL=http://`
+
+## how to start
+```
+selenium-standalone start
+npm test
+```
