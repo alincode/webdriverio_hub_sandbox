@@ -3,7 +3,7 @@ describe('auth 2', function() {
     it('go to login page', function(done) {
       browser.url('/');
       browser.click('.open-panel');
-      browser.click('.panel-close');
+      browser.click('[href*=login]');
       browser.waitForExist('[name=identifier]');
       browser.getText('.login-screen-title').should.be.equal(
         'Login');

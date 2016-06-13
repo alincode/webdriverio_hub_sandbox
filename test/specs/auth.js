@@ -6,7 +6,7 @@ describe('auth', function() {
     it('go to login page', function(done) {
       browser.url('/');
       browser.click('.open-panel');
-      browser.click('.panel-close');
+      browser.click('[href*=login]');
       LoginPage.identifier.waitForExist();
       LoginPage.title.getText().should.be.equal('Login');
     });
